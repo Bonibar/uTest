@@ -63,7 +63,7 @@ if [ -d "opts" ]; then
         exit 0
     fi
 fi'.PHP_EOL;
-echo "mkdir logs opts 2>/dev/null".PHP_EOL.PHP_EOL;
+echo "mkdir logs opt 2>/dev/null".PHP_EOL.PHP_EOL;
 echo $str.PHP_EOL.PHP_EOL;
 echo 'echo -e "\n\n${BLU}==== STATS ====${NC}"'.PHP_EOL;
 echo 'echo "Number of tests: ${BLU}$TESTS${NC}"'.PHP_EOL;
@@ -78,4 +78,4 @@ echo 'echo "Number of tests passed: ${GRN}$((TESTS-FAILS))${NC}" >> $TMPFILE'.PH
 echo 'echo "Number of tests failed: ${OGN}$FAILS${NC}" >> $TMPFILE'.PHP_EOL;
 echo 'echo "Number of crashes: ${RED}$CRASHES${NC}" >> $TMPFILE'.PHP_EOL;
 echo 'echo "${BLU}================${NC}" >> $TMPFILE'.PHP_EOL;
-echo "rm -rf logs opts".PHP_EOL;
+echo "rm -rf logs opt".PHP_EOL;
