@@ -144,7 +144,7 @@ class utest
         $res = "# Test propose par ".$this->getUsername()." le ".$this->getDate()->format("d-m-Y H:i:s").PHP_EOL;
         $res = $res."ERRORS=0".PHP_EOL;
         if ($this->getOptFile() != null) {
-            $res = $res."curl -o opt/file http://pastebin.com/raw.php?i=".$this->getOptFile().PHP_EOL;
+            $res = $res."curl -o opt/file http://pastebin.com/raw/".$this->getOptFile().PHP_EOL;
         }
         $res = $res.'echo "${BLU}#####'.str_replace('"', '\\"', $this->getCommand()).'#####${NC}"'.PHP_EOL;
         $res = $res.$this->getCommand()." 0>logs/in 1>logs/out 2>logs/err".PHP_EOL;
