@@ -253,4 +253,20 @@ class utest
         $sql->close();
         return 'SUCCESS';
     }
+
+    public function delete($uid)
+    {
+        if ($uid != $this->fk_user)
+            return "Impossible de supprimer le test de quelqu'un d'autre";
+
+        global $host, $sqluser, $sqlpass, $bdd, $bddtable;
+        $sql = new mysqli($host, $sqluser, $sqlpass, $bdd);
+        if (mysqli_connect_error()) {
+            return 'Impossible de se connecter au serveur de base de données !';
+        }
+
+        $res = $sql->query("DELETE " . $bddtable['utest'] . " WHERE " . $bddtable['utest'] . ".id = " . $this->getId() . ";");
+        $sql->close();
+        return 'SUCCESS';
+    }
 }
