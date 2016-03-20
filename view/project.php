@@ -148,6 +148,8 @@ if (!$project) {
                 echo '<h3 class="panel-title">';
                 echo $utest->getCommand();
                 echo '<span style="margin-left: 5px;" class="glyphicon glyphicon-search" rel="tooltip" data-placement="top" data-original-title="Apperçu" style="cursor: pointer;" onclick="$(\'#m'.$utest->getId().'\').modal(); event.cancelBubble=true;"></span>';
+                if ($utest->getUserId() == $_SESSION['user']->getId())
+                    echo '<span class="pull-right glyphicon glyphicon-trash" rel="tooltip" data-placement="top" style="cursor: pointer;" onclick="delete(this, '.$project->getId().', '.$utest->getId().');event.cancelBubble=true;"></span>';
                 echo '<span class="badge pull-right" rel="tooltip" data-placement="top" data-original-title="'.$datatitle.'" style="cursor: pointer;" onclick="upvote(this, '.$project->getId().', '.$utest->getId().');event.cancelBubble=true;">'.$utest->getScore().'</span>';
                 if ($paneltype == "primary") {
                     echo '<span class="pull-right glyphicon glyphicon-star"></span> ';
@@ -173,6 +175,7 @@ if (!$project) {
 <script type="application/javascript" src="js/addDownload.js"></script>
 <script type="application/javascript" src="js/addUtest.js"></script>
 <script type="application/javascript" src="js/upvote.js"></script>
+<script type="application/javascript" src="js/delete.js"></script>
 <script type="text/javascript">
     $(function () {
         $("[rel='tooltip']").tooltip();
