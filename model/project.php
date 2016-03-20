@@ -1,29 +1,66 @@
 <?php
 
+/**
+ * Contais Project class
+ * @package utest_project
+ * @author Bonibar
+ */
+
 $rpath = dirname(__FILE__) . DIRECTORY_SEPARATOR;
 include_once $rpath.'utest.php';
 
+
+/**
+ * Class for every project on the website
+ * @author Bonibar
+ */
 class Project
 {
     private $pid;
     private $title;
     
+
+    /**
+     * Default constructor of a Project
+     * All projects are generated based on the Epitech intranet (https://intra.epitech.eu/)
+     * @param int $pid Id of the project
+     * @param string $title Title of the project
+     */
     public function __construct($pid, $title)
     {
         $this->pid = $pid;
         $this->title = $title;
     }
     
+
+    /**
+     * Return the title of the Project
+     * @return string Title of the Project
+     */
     public function getTitle()
     {
         return str_replace('[PROJET] ', '', $this->title);
     }
     
+
+    /**
+     * Return the id of the Project
+     * @return int Id of the Project
+     */
     public function getId()
     {
         return $this->pid;
     }
     
+
+    /**
+     * Return a specific associated uTest
+     * This function requires a database connection.
+     * It returns an instance of the Utest class (see model/utest.php) of the specific utest asked in parameters (or null if not found)
+     * @see model/utest.php
+     * @param int $utid The id of the uTest to find in the Project Database
+     * @return utest Return an instance of the Utest class or null if the test was not found
+     */
     public function getUTest($utid)
     {
         global $host, $sqluser, $sqlpass, $bdd, $bddtable;
@@ -51,6 +88,14 @@ class Project
         return $result;
     }
     
+
+    /**
+     * Return all associated uTests
+     * This function requires a database connection.
+     * It returns an array of instances of the Utest class (see model/utest.php)
+     * @see model/utest.php
+     * @return utest[] Return all uTests associated with the Project
+     */
     public function getUTests()
     {
         global $host, $sqluser, $sqlpass, $bdd, $bddtable;
@@ -78,6 +123,15 @@ class Project
         return $result;
     }
     
+
+    /**
+     * Add a uTest to the Project
+     * This function requires a database connection.
+     * This function associate a utest (see model/utest.php) to the Project
+     * @see model/utest.php
+     * @param utest $utest Instance of the Utest class to add to the project
+     * @param int $uid Id of the user
+     */
     public function addUTest($utest, $uid)
     {
         global $host, $sqluser, $sqlpass, $bdd, $bddtable;
