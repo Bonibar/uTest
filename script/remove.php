@@ -25,5 +25,5 @@ if (!$utest || count($utest) != 1) {
     return (1);
 }
 
-echo $utest[0]->delete($_SESSION['user']->getId());
+echo $utest[0]->remove_test($_SESSION['user']->getId());
 return (0);

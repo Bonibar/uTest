@@ -254,7 +254,7 @@ class utest
         return 'SUCCESS';
     }
 
-    public function delete($uid)
+    public function remove_test($uid)
     {
         if ($uid != $this->fk_user)
             return "Impossible de supprimer le test de quelqu'un d'autre";
@@ -264,8 +264,20 @@ class utest
         if (mysqli_connect_error()) {
             return 'Impossible de se connecter au serveur de base de données !';
         }
-
-        $res = $sql->query("DELETE " . $bddtable['utest'] . " WHERE " . $bddtable['utest'] . ".id = " . $this->getId() . ";");
+		
+		$res = $sql->query("DELETE FROM " . $bddtable['votes'] . " WHERE " . $bddtable['votes'] . ".fk_utest = " . $this->getId() . ";");
+		if (!$res)
+		{
+			$sql->close();
+			return 'Erreur lors de la suppression du test';
+		}
+		
+        $res = $sql->query("DELETE FROM " . $bddtable['utest'] . " WHERE " . $bddtable['utest'] . ".id = " . $this->getId() . ";");
+		if (!$res)
+		{
+			$sql->close();
+			return 'Impossible de supprimer le test';
+		}
         $sql->close();
         return 'SUCCESS';
     }
