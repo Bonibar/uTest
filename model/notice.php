@@ -1,18 +1,35 @@
 <?php
 
-// Types
-// 0. info
-// 1. success
-// 2. warning
-// 3. danger
+/**
+ * Class for all notifications on website
+ * @package notification
+ * @author Bonibar
+ */
 
+/**
+ * Class for all notifications on website
+ * @author Bonibar
+ */
 class Notice
 {
+	// Types
+	// 0. info
+	// 1. success
+	// 2. warning
+	// 3. danger
     private $title;
     private $content;
     private $type;
     private $permanent;
     
+
+    /**
+     * Default constructor of a Notice
+     * @param string $title Title of the notice
+     * @param string $content Content to display in the notice
+     * @param string $type Type of the notice (info, success, warning or danger)
+     * @param bool $permanent If true, the notice will always be displayed (default: false)
+     */
     public function __construct($title, $content, $type, $permanent = false)
     {
         $this->title = $title;
