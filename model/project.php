@@ -3,7 +3,6 @@
 /**
  * Contais Project class
  * @package utest_project
- * @author Bonibar
  */
 
 $rpath = dirname(__FILE__) . DIRECTORY_SEPARATOR;
@@ -94,7 +93,7 @@ class Project
      * This function requires a database connection.
      * It returns an array of instances of the Utest class (see model/utest.php)
      * @see model/utest.php
-     * @return utest[] Return all uTests associated with the Project
+     * @return utest[] Return all uTests associated with the Project or null if there is no utest
      */
     public function getUTests()
     {
@@ -131,6 +130,7 @@ class Project
      * @see model/utest.php
      * @param utest $utest Instance of the Utest class to add to the project
      * @param int $uid Id of the user
+     * @return string If the test was added, returns null. Otherwise, return the error message
      */
     public function addUTest($utest, $uid)
     {
