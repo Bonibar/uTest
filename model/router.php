@@ -1,5 +1,17 @@
 <?php
 
+/**
+ * Contais router class
+ * @package utest_router
+ */
+
+
+/**
+ * Class that manage rooting system
+ * This class will include views and generate keys based on current URL
+ * @package utest_router_class
+ * @author Bonibar
+ */
 class Router
 {
     private $path = 'p';
@@ -19,6 +31,11 @@ class Router
     
     private $keys = array();
     
+
+    /**
+     * Execute rooting
+     * Include views based on URL and rooting table (see $route)
+     */
     public function route()
     {
         if (!isset($_GET[$this->path])) {
@@ -50,6 +67,11 @@ class Router
         }
     }
     
+
+    /**
+     * Return the subtitle of the current route
+     * @return string Subtitle of the route
+     */
     public function getSubtitle()
     {
         if (!isset($_GET[$this->path])) {
@@ -83,6 +105,13 @@ class Router
         return $subtitle;
     }
     
+
+    /**
+     * Return keys of the current route
+     * Keys are based on the current URL. They are after the route name
+	 * They are generated during route() function
+     * @return string[] Keys of the route
+     */
     public function getKeys()
     {
         return $this->keys;

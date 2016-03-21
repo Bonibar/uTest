@@ -1,7 +1,7 @@
 <?php
 
 /**
- * Contais Project class
+ * Contains Project class
  * @package utest_project
  */
 
@@ -11,6 +11,7 @@ include_once $rpath.'utest.php';
 
 /**
  * Class for every project on the website
+ * @package utest_project_class
  * @author Bonibar
  */
 class Project

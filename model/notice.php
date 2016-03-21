@@ -7,6 +7,7 @@
 
 /**
  * Class for all notifications on website
+ * @package utest_notice_class
  * @author Bonibar
  */
 class Notice
