@@ -1,11 +1,11 @@
 <?php
 
 // SETUP
-$LOCAL = true;
-$DEBUG = true;
+$LOCAL = true; // Switching database credentials
+$DEBUG = true; // Show PHP debug + allow admins to navigate through projects
 
-// DEBUG MODE (comment to disable)
-if ($LOCAL) {
+// DEBUG MODE
+if ($LOCAL && $DEBUG) {
     error_reporting(E_ALL);
     ini_set('display_errors', 1);
 }
