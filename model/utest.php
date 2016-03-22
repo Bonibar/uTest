@@ -1,10 +1,22 @@
 <?php
 
+/**
+ * Contains Utest class
+ * @package utest_utest
+ */
+
 $rpath = dirname(__FILE__) . DIRECTORY_SEPARATOR;
 include_once $rpath.'project.php';
 include_once $rpath.'notice.php';
 include_once $rpath.'../params.php';
 
+
+/**
+ * Class representing an unitary test
+ * Unitary test are also called Utest
+ * @package utest_utest_class
+ * @author Bonibar
+ */
 class utest
 {
     private $id;
@@ -19,6 +31,20 @@ class utest
     private $fk_user;
     private $fk_user_login;
     
+
+    /**
+     * Default constructor of a Utest
+     * @param int $id Id of the Utest
+     * @param int $score Score of the Utest
+     * @param string $command Command of the Utest
+     * @param string $std_in Expected standard input of the Utest (null if not needed)
+     * @param string $std_out Expected standard output of the Utest (null if not needed)
+     * @param mixed $return_value Expected return value of the Utest as int (null if not needed)
+     * @param date $udate Date of creation of the Utest
+     * @param int $fk_user Id of the owner
+     * @param string $fk_user_login Login of the owner
+     * @param string $opt_file Id of the optional pastebin file (null if not needed)
+     */
     public function __construct($id, $score, $command, $std_in, $std_out, $ret_value, $udate, $fk_user, $fk_user_login, $opt_file)
     {
         $this->id = $id;
@@ -37,56 +63,114 @@ class utest
         $this->opt_file = $opt_file;
     }
     
+
+    /**
+     * Return the id of the Utest
+     * @return int Id of the Utest
+     */
     public function getId()
     {
         return $this->id;
     }
     
+
+    /**
+     * Return the score of the Utest
+     * @return int Score of the Utest
+     */
     public function getScore()
     {
         return $this->score;
     }
     
+
+    /**
+     * Return the command of the Utest
+     * @return string Command of the Utest
+     */
     public function getCommand()
     {
         return $this->command;
     }
     
+
+    /**
+     * Return the expected standard input of the Utest
+     * @return string Expected standard input of the Utest. Null if the Utest hasn't one
+     */
     public function getStdin()
     {
         return $this->std_in;
     }
     
+
+    /**
+     * Return the expected standard output of the Utest
+     * @return string Standard output of the Utest. Null if the Utest hasn't one
+     */
     public function getStdout()
     {
         return $this->std_out;
     }
     
+
+    /**
+     * Return the expected return value of the Utest
+     * @return mixed Expected return value as int. Null if theUtest hasn't one
+     */
     public function getReturnValue()
     {
         return $this->ret_value;
     }
     
+
+    /**
+     * Return the post date of the Utest
+     * @return date Date of the Utest
+     */
     public function getDate()
     {
         return $this->udate;
     }
     
+
+    /**
+     * Return the id of the owner
+     * @return int Id of the owner
+     */
     public function getUserid()
     {
         return $this->fk_user;
     }
     
+
+    /**
+     * Return the login of the owner
+     * Login is Epitech's login
+     * @return string Login of the owner
+     */
     public function getUsername()
     {
         return $this->fk_user_login;
     }
     
+
+    /**
+     * Return the pastebin code of the Optional file
+     * Optional file is stored on pastebin. To access to it, just go to http://pastebin.com/ID_OPT_FILE
+     * @return string Id of the optional pastebin file. Null if the Utest hasn't one
+     */
     public function getOptFile()
     {
         return $this->opt_file;
     }
     
+
+    /**
+     * Return the HTML modal of the Utest
+     * Modal are defined in boostrap (see http://getbootstrap.com/javascript/#modals)
+     * @return string HTML representation of the Utest's modal
+     */
     public function getModal()
     {
         $result = '<div class="modal fade" id="m'.$this->getId().'" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
@@ -139,6 +223,12 @@ class utest
         return $result;
     }
     
+
+    /**
+     * Return the scripted version of the Utest
+     * Utests are designed to run in a shell script. To function convert an instance to a runnable script
+     * @return string Scripted version of the Utest
+     */
     public function toString()
     {
         $res = "# Test propose par ".$this->getUsername()." le ".$this->getDate()->format("d-m-Y H:i:s").PHP_EOL;
@@ -227,6 +317,13 @@ class utest
         return $res;
     }
     
+
+    /**
+     * Add one to the score of the Utest
+     * This function requires a database connection
+     * @param int $uid Id of the upvoter
+     * @return string Error message or SUCCESS
+     */
     public function upVote($uid)
     {
         if ($uid == $this->fk_user) {
@@ -254,6 +351,13 @@ class utest
         return 'SUCCESS';
     }
 
+
+    /**
+     * Remove the Utest in database
+     * This function requires a database connection
+     * @param int $uid Id of the deleter (User who wants to delete the Utest)
+     * @return string Error message or SUCCESS
+     */
     public function remove_test($uid)
     {
         if ($uid != $this->fk_user)
